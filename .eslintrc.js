@@ -13,7 +13,7 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  
+
   // Base config
   extends: ["eslint:recommended"],
 
