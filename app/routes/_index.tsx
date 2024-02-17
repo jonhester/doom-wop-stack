@@ -45,7 +45,8 @@ export default function Index() {
           </a>
         </li>
         <li>
-          There {data == 1 ? 'is' : "are"} currently {data} {data == 1 ? 'user' : "users"} in the database.
+          There {data == 1 ? "is" : "are"} currently {data}{" "}
+          {data == 1 ? "user" : "users"} in the database.
         </li>
       </ul>
     </div>
