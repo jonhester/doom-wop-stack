@@ -1,4 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
+import { prisma } from "../db.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,7 +10,13 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader() {
+  return await prisma.user.count();
+}
+
 export default function Index() {
+  const data = useLoaderData<typeof loader>();
+
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
       <h1>Welcome to Remix</h1>
@@ -34,6 +43,9 @@ export default function Index() {
           <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
             Remix Docs
           </a>
+        </li>
+        <li>
+          There {data == 1 ? 'is' : "are"} currently {data} {data == 1 ? 'user' : "users"} in the database.
         </li>
       </ul>
     </div>
